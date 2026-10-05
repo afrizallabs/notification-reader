@@ -10,3 +10,9 @@ android/local.properties
 android/key.properties
 *.jks
 *.keystore
+
+# IDE and operating system files
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
