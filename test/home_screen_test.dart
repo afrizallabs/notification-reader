@@ -46,13 +46,12 @@ void main() {
     expect(find.text('Kirim teks notifikasi lengkap'), findsOneWidget);
     expect(find.text('Berikan akses'), findsOneWidget);
 
-    const sourceAppKey = ValueKey('source-app-com.example.bank');
-    final sourceApp = find.byKey(sourceAppKey);
-    await tester.ensureVisible(sourceApp);
+    await tester.drag(find.byType(ListView), const Offset(0, -1000));
     await tester.pumpAndSettle();
     expect(
-      find.descendant(of: sourceApp, matching: find.text('Example Bank')),
+      find.text('Pilih sumber notifikasi (Android 11 atau lebih baru):'),
       findsOneWidget,
     );
+    expect(find.text('Simpan pilihan sumber'), findsOneWidget);
   });
 }
