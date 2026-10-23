@@ -44,7 +44,9 @@ void main() {
 
     expect(find.text('Pencatat Pengeluaran'), findsOneWidget);
     expect(find.text('Kirim teks notifikasi lengkap'), findsOneWidget);
-    expect(find.text('Example Bank'), findsOneWidget);
     expect(find.text('Berikan akses'), findsOneWidget);
+
+    await tester.scrollUntilVisible(find.text('Example Bank'), 300);
+    expect(find.text('Example Bank'), findsOneWidget);
   });
 }
