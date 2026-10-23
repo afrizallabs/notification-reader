@@ -10,17 +10,16 @@ This project has no custom server/API, Docker, homelab, or application-managed t
 
 ## Requirements
 
-- Flutter stable and Dart SDK compatible with the `pubspec.yaml` SDK constraint.
-- Android SDK and Android build tools supported by the Flutter release used.
-- JDK 17.
+- Android 11 (API 30) or later to install and use the app.
+- Flutter stable, Android SDK, and JDK 17 are needed only if building locally; the GitHub Actions workflow supplies them for cloud builds.
 - A Google account with access to Google Apps Script and Google Sheets.
 
 ## Run
 
 1. Complete the Google Apps Script setup in [docs/SETUP.md](docs/SETUP.md).
 2. Follow the setup guide to configure Apps Script Properties and the app's endpoint and shared secret.
-3. Install Flutter stable, Android SDK, and JDK 17. This workspace was created without those tools; if the Flutter-generated Android Gradle wrapper files are missing, run `flutter create --platforms=android .` and review the generated changes to ensure the Kotlin listener and Android configuration are preserved.
-4. From the project root, run:
+3. To build without installing Android tools on your PC, push the project to GitHub and run the **Build Android APK** workflow from the Actions tab. Download the `expense-notification-reader-debug-apk` artifact and extract `app-debug.apk`. See [docs/SETUP.md](docs/SETUP.md) for details.
+4. For a local build instead, install Flutter stable, Android SDK, and JDK 17. If the Flutter-generated Android Gradle wrapper files are missing, run `flutter create --platforms=android .` and review the generated changes to ensure the Kotlin listener and Android configuration are preserved. From the project root, run:
 
    ```powershell
    flutter pub get

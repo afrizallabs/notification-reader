@@ -51,17 +51,20 @@ Panduan ini menjelaskan konfigurasi Google Sheets, Google Apps Script, dan aplik
 
 Deployment web app yang dapat diakses publik menggunakan shared secret sebagai validasi pada tingkat aplikasi. Secret adalah bearer credential dan dapat diekstrak dari perangkat oleh pihak yang cukup termotivasi; jangan menganggapnya sebagai autentikasi pengguna atau perlindungan penyalahgunaan yang kuat.
 
-## 3. Siapkan dan jalankan aplikasi Flutter
+## 3. Build APK melalui GitHub Actions (tanpa tool Android di PC)
 
-Pasang Flutter stable, Android SDK, dan JDK 17. Workspace ini disiapkan di lingkungan yang tidak memiliki Flutter SDK, sehingga file Gradle wrapper yang biasanya dibuat Flutter mungkin belum tersedia. Jika `android/gradlew.bat` tidak ada, jalankan dari direktori utama project:
+Workflow `.github/workflows/build-android.yml` membangun APK debug di GitHub Actions. Anda tidak perlu memasang Flutter, Android SDK, atau JDK di PC.
 
-```powershell
-flutter create --platforms=android .
-```
+1. Pastikan workflow dan source project sudah di-push ke branch `main` di GitHub.
+2. Untuk menjalankan build, buka repository di GitHub, pilih tab **Actions**, pilih **Build Android APK**, lalu tekan **Run workflow**. Workflow juga berjalan otomatis setiap ada push ke `main`.
+3. Tunggu sampai workflow selesai dengan status berhasil.
+4. Buka hasil run tersebut dan unduh artifact `expense-notification-reader-debug-apk`.
+5. Ekstrak file ZIP artifact untuk mendapatkan `app-debug.apk`.
+6. Pindahkan APK ke ponsel Android 11 atau lebih baru, lalu buka file tersebut untuk memasang. Jika diminta, izinkan aplikasi yang digunakan untuk membuka APK memasang aplikasi dari sumber tersebut.
 
-Periksa perubahan yang dihasilkan agar konfigurasi Android 11+ dan source Kotlin listener tetap dipertahankan.
+APK debug ditandatangani untuk pemasangan dan pengujian pribadi. Jika memasang APK hasil build baru dan Android menolak pembaruan karena tanda tangan berbeda, hapus aplikasi lama terlebih dahulu lalu pasang APK baru. Menghapus aplikasi dapat menghapus konfigurasi lokalnya; transaksi yang sudah masuk ke Google Sheets tidak ikut terhapus.
 
-Dari direktori utama project, jalankan:
+Artifact tersedia selama 14 hari. Untuk build lokal (opsional), pasang Flutter stable, Android SDK, dan JDK 17. Jika file Gradle wrapper belum ada, jalankan `flutter create --platforms=android .` dari direktori project, lalu:
 
 ```powershell
 flutter pub get
@@ -71,7 +74,7 @@ node scripts/test_apps_script.js
 flutter build apk --debug
 ```
 
-Pasang APK pada perangkat Android 11 (API 30) atau lebih baru. Di dalam aplikasi:
+Setelah APK terpasang, di dalam aplikasi:
 
 1. Masukkan URL deployment Apps Script yang berakhir dengan `/exec`.
 2. Masukkan shared secret yang sama dengan nilai `SCRIPT_TOKEN` di Script Properties.
