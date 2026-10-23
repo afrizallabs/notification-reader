@@ -236,6 +236,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
           ..._apps.map((app) {
             final packageName = app['package'] as String? ?? '';
             return CheckboxListTile(
+              key: ValueKey('source-app-$packageName'),
               contentPadding: EdgeInsets.zero,
               title: Text(app['label'] as String? ?? packageName),
               subtitle: Text(packageName),

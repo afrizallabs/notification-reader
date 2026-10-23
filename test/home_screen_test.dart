@@ -46,7 +46,12 @@ void main() {
     expect(find.text('Kirim teks notifikasi lengkap'), findsOneWidget);
     expect(find.text('Berikan akses'), findsOneWidget);
 
-    await tester.scrollUntilVisible(find.text('Example Bank'), 300);
-    expect(find.text('Example Bank'), findsOneWidget);
+    const sourceAppKey = ValueKey('source-app-com.example.bank');
+    final sourceApp = find.byKey(sourceAppKey);
+    await tester.scrollUntilVisible(sourceApp, 300);
+    expect(
+      find.descendant(of: sourceApp, matching: find.text('Example Bank')),
+      findsOneWidget,
+    );
   });
 }
