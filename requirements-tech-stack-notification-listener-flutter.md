@@ -18,7 +18,7 @@ This document complements [requirements-notification-listener-pencatat-pengeluar
 | Navigation | `go_router` | Manage setup, consent, source selection, status, and settings routes. |
 | Localization and formatting | `intl` | Format UI dates/numbers for Indonesian users; send canonical ISO 8601 timestamps and numeric IDR amounts. |
 | Secure configuration | Android Keystore-backed encrypted storage | Store the Apps Script URL and shared secret securely; do not put the secret in source code, plain preferences, logs, or spreadsheet rows. |
-| Flutter testing | `flutter_test` and `integration_test` | Test configuration, consent, validation, status states, and Flutter/native integration. |
+| Flutter testing | `flutter_test` | Test configuration, consent, validation, status states, and widget behavior. |
 | Native Android testing | JUnit and AndroidX Test | Test notification filtering, payload construction, WorkManager retry/error paths, and secure configuration access. |
 | Apps Script testing | Apps Script test functions and deployment smoke tests | Test validation, spreadsheet selection, append behavior, and success/error response contracts. |
 

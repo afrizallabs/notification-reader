@@ -99,7 +99,7 @@ class TransactionNotificationListener : NotificationListenerService() {
     }
 }
 
-private fun String.sha256(): String =
+internal fun String.sha256(): String =
     MessageDigest.getInstance("SHA-256")
         .digest(toByteArray())
         .joinToString("") { "%02x".format(it) }
