@@ -34,6 +34,13 @@ jobs:
             flutter create --platforms=android .
           fi
 
+      - name: Remove generated Kotlin DSL build file
+        run: |
+          if [ -f android/app/build.gradle.kts ] &&
+             ! git ls-files --error-unmatch -- android/app/build.gradle.kts >/dev/null 2>&1; then
+            rm android/app/build.gradle.kts
+          fi
+
       - name: Remove generated Flutter starter test
         run: |
           if [ -f test/widget_test.dart ] &&
