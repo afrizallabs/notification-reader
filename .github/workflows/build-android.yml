@@ -34,6 +34,14 @@ jobs:
             flutter create --platforms=android .
           fi
 
+      - name: Remove generated Flutter starter test
+        run: |
+          if [ -f test/widget_test.dart ] &&
+             ! git ls-files --error-unmatch -- test/widget_test.dart >/dev/null 2>&1 &&
+             grep -q "MyApp" test/widget_test.dart; then
+            rm test/widget_test.dart
+          fi
+
       - name: Install Flutter dependencies
         run: flutter pub get
 
