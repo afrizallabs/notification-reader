@@ -48,7 +48,8 @@ void main() {
 
     const sourceAppKey = ValueKey('source-app-com.example.bank');
     final sourceApp = find.byKey(sourceAppKey);
-    await tester.scrollUntilVisible(sourceApp, 300);
+    await tester.ensureVisible(sourceApp);
+    await tester.pumpAndSettle();
     expect(
       find.descendant(of: sourceApp, matching: find.text('Example Bank')),
       findsOneWidget,
